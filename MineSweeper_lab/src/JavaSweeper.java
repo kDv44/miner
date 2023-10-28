@@ -15,10 +15,10 @@ public class JavaSweeper extends JFrame
     private JPanel panel;
     private JLabel label;
 
-    private final int COLS = 9; // столбцы
-    private final int ROWS = 9; // строки
-    private final int BOMBS = 10; // количество бомб
-    private final int IMAGE_SIZE = 30; // размер картинки одинаковый по x и по y
+    private final int COLS = 9; 
+    private final int ROWS = 9;
+    private final int BOMBS = 10;
+    private final int IMAGE_SIZE = 30; 
 
 
     public static void main(String[] args)
@@ -43,15 +43,16 @@ public class JavaSweeper extends JFrame
     }
 
     private void initPanel (){
-        panel = new JPanel() // при инициализации выводим картинки
+        panel = new JPanel() 
         {
             @Override
             protected void paintComponent(Graphics g)
             {
                 super.paintComponent(g);
                 for (Coord coord : Ranges.getAllCoords())
-                    //g.drawImage((Image) game.getBox(coord).image, coord.x * IMAGE_SIZE, coord.y * IMAGE_SIZE, this); //приведение типа к Image
-                    g.drawImage((Image) game.getBox(coord).image, coord.x * IMAGE_SIZE, coord.y * IMAGE_SIZE, IMAGE_SIZE, IMAGE_SIZE, this); //приведение типа к Image
+                    //g.drawImage((Image) game.getBox(coord).image, coord.x * IMAGE_SIZE, coord.y * IMAGE_SIZE, this); 
+                    g.drawImage((Image) game.getBox(coord).image, coord.x * IMAGE_SIZE, 
+                    coord.y * IMAGE_SIZE, IMAGE_SIZE, IMAGE_SIZE, this); 
 
             }
         };
@@ -62,18 +63,19 @@ public class JavaSweeper extends JFrame
                 int x = e.getX() / IMAGE_SIZE;
                 int y = e.getY() / IMAGE_SIZE;
                 Coord coord = new Coord(x, y);
-                if (e.getButton() == MouseEvent.BUTTON1) // левая кнопка мыши
+                if (e.getButton() == MouseEvent.BUTTON1) 
                     game.pressLeftButton (coord);
-                if (e.getButton() == MouseEvent.BUTTON3) // правая кнока мыши
+                if (e.getButton() == MouseEvent.BUTTON3) 
                     game.pressRightButton (coord);
-                if (e.getButton() == MouseEvent.BUTTON2) // средняя кнопка мыши
-                    game.start (); // перезапускаем игру
+                if (e.getButton() == MouseEvent.BUTTON2) 
+                    game.start (); 
                 label.setText(getessage ());
-                panel.repaint(); // после каждого действия мыши перерисовываем панель игры
+                panel.repaint(); 
             }
         });
 
-        panel.setPreferredSize(new Dimension(Ranges.getSize().x * IMAGE_SIZE, Ranges.getSize().y * IMAGE_SIZE));
+        panel.setPreferredSize(new Dimension(Ranges.getSize().x * IMAGE_SIZE, 
+        Ranges.getSize().y * IMAGE_SIZE));
         add (panel);
     }
 
@@ -81,9 +83,9 @@ public class JavaSweeper extends JFrame
     {
         switch (game.getState())
         {
-            case PLAYED: return "Еще есть бомбы";
-            case BOMBED:return "Бабах - ты взорвался";
-            case WINNER: return "Примите поздравления";
+            case PLAYED: return "Ще є міни";
+            case BOMBED:return "ГГ";
+            case WINNER: return "Перемога !";
             default: return "Welcome";
         }
     }
